@@ -10,6 +10,7 @@ import { topTenSurfaceAreaQuery } from './queries.js';
 import { topTenPopulationQuery } from './queries.js';
 import { worldPopulationQuery } from './queries.js';
 
+// Server connection configurations
 let connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -17,12 +18,13 @@ let connection = mysql.createConnection({
   database: 'world',
 });
 
+//Connect to the Database server
 connection.connect((err) => {
   if (err) throw err;
   console.log('Server connected!');
 });
 
-//What are the names of countries with population greater than 8 million?
+//Query of what are the names of countries with population greater than 8 million?
 connection.query(populationMoreEightMillion, (error, results) => {
   if (error) {
     throw error;
@@ -31,7 +33,7 @@ connection.query(populationMoreEightMillion, (error, results) => {
   console.log(rows);
 });
 
-//What are the names of countries that have “land” in their names?
+//Query of what are the names of countries that have “land” in their names?
 connection.query(countryNameHasLandQuery, (error, results) => {
   if (error) {
     throw error;
@@ -40,7 +42,7 @@ connection.query(countryNameHasLandQuery, (error, results) => {
   console.log(rows);
 });
 
-//What are the names of the cities with population in between 500,000 and 1 million?
+//Query of what are the names of the cities with population in between 500,000 and 1 million?
 connection.query(
   populationLessOneMillionAndMoreFiveHundredThousandQuery,
   (error, results) => {
@@ -52,16 +54,19 @@ connection.query(
   },
 );
 
-//What's the name of all the countries on the continent ‘Europe’?
+//Query of what's the name of all the countries on the continent ‘Europe’?
 connection.query(countriesInContinentEuropeQuery, (error, results) => {
   if (error) {
     throw error;
   }
   let rows = JSON.parse(JSON.stringify(results));
+  console.log(
+    'List all the countries in the descending order of their surface areas.',
+  );
   console.log(rows);
 });
 
-//List all the countries in the descending order of their surface areas.
+//Query of list all the countries in the descending order of their surface areas.
 connection.query(descendingOrderOfSurfaceAreasQuery, (error, results) => {
   if (error) {
     throw error;
@@ -73,7 +78,7 @@ connection.query(descendingOrderOfSurfaceAreasQuery, (error, results) => {
   console.log(rows);
 });
 
-//What are the names of all the cities in the Netherlands?
+//Query of what are the names of all the cities in the Netherlands?
 connection.query(NetherlandsCitiesQuery, (error, results) => {
   if (error) {
     throw error;
@@ -83,7 +88,7 @@ connection.query(NetherlandsCitiesQuery, (error, results) => {
   console.log(rows);
 });
 
-//What is the population of Rotterdam?
+//Query of what is the population of Rotterdam?
 connection.query(RotterdamPopulationQuery, (error, results) => {
   if (error) {
     throw error;
@@ -93,7 +98,7 @@ connection.query(RotterdamPopulationQuery, (error, results) => {
   console.log(rows);
 });
 
-//What's the top 10 countries by Surface Area?
+//Query of what's the top 10 countries by Surface Area?
 connection.query(topTenSurfaceAreaQuery, (error, results) => {
   if (error) {
     throw error;
@@ -103,7 +108,7 @@ connection.query(topTenSurfaceAreaQuery, (error, results) => {
   console.log(rows);
 });
 
-//What's the top 10 most populated cities?
+//Query of what's the top 10 most populated cities?
 connection.query(topTenPopulationQuery, (error, results) => {
   if (error) {
     throw error;
@@ -113,7 +118,7 @@ connection.query(topTenPopulationQuery, (error, results) => {
   console.log(rows);
 });
 
-//What is the population number of the world?
+//Query of what is the population number of the world?
 connection.query(worldPopulationQuery, (error, results) => {
   if (error) {
     throw error;
