@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import { ShowDatabasesQuery } from './query.js';
+import { showDatabasesQuery } from './query.js';
 import { createInviteeTableQuery } from './query.js';
 import { createRoomTableQuery } from './query.js';
 import { createMeetingTableQuery } from './query.js';
@@ -22,7 +22,7 @@ connection.connect((err) => {
 //Function to get a list of the Databases on the Database Server.
 const databaseListFunc = () => {
   return new Promise((resolve, reject) => {
-    connection.query(ShowDatabasesQuery, (error, results) => {
+    connection.query(showDatabasesQuery, (error, results) => {
       if (error) {
         reject(error);
       } else {

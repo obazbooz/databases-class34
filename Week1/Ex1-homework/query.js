@@ -3,21 +3,21 @@
   two functions contain sql statements to create and delete Database.
 */
 
-export let ShowDatabasesQuery = `SHOW DATABASES `;
+export const showDatabasesQuery = `SHOW DATABASES `;
 
-export let createInviteeTableQuery =
-  'create table Invitee (invitee_no int, invitee_name varchar(50), invited_by varchar(50))';
+export const createInviteeTableQuery =
+  'CREATE TABLE Invitee (invitee_no INT, invitee_name VARCHAR(50), invited_by VARCHAR(50))';
 
-export let createRoomTableQuery =
-  'create table Room  (room_no int, room_name varchar(50), floor_number int)';
+export const createRoomTableQuery =
+  'CREATE TABLE Room  (room_no INT, room_name VARCHAR(50), floor_number INT)';
 
-export let createMeetingTableQuery =
-  'create table Meeting  (meeting_no int, meeting_title text, starting_time time, ending_time time)';
+export const createMeetingTableQuery =
+  'CREATE TABLE Meeting  (meeting_no INT, meeting_title text, starting_time TIMESTAMP, ending_time TIMESTAMP)';
 
 export function createDatabase(databaseName) {
-  return `create database ${databaseName}`;
+  return `Create DATABASE ${databaseName}`;
 }
 
 export function deleteDatabase(databaseName) {
-  return `drop database ${databaseName}`;
+  return `DROP DATABASE ${databaseName}`;
 }

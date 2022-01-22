@@ -4,8 +4,8 @@ import { countryNameHasLandQuery } from './queries.js';
 import { populationLessOneMillionAndMoreFiveHundredThousandQuery } from './queries.js';
 import { countriesInContinentEuropeQuery } from './queries.js';
 import { descendingOrderOfSurfaceAreasQuery } from './queries.js';
-import { NetherlandsCitiesQuery } from './queries.js';
-import { RotterdamPopulationQuery } from './queries.js';
+import { netherlandsCitiesQuery } from './queries.js';
+import { rotterdamPopulationQuery } from './queries.js';
 import { topTenSurfaceAreaQuery } from './queries.js';
 import { topTenPopulationQuery } from './queries.js';
 import { worldPopulationQuery } from './queries.js';
@@ -79,7 +79,7 @@ connection.query(descendingOrderOfSurfaceAreasQuery, (error, results) => {
 });
 
 //Query of what are the names of all the cities in the Netherlands?
-connection.query(NetherlandsCitiesQuery, (error, results) => {
+connection.query(netherlandsCitiesQuery, (error, results) => {
   if (error) {
     throw error;
   }
@@ -89,7 +89,7 @@ connection.query(NetherlandsCitiesQuery, (error, results) => {
 });
 
 //Query of what is the population of Rotterdam?
-connection.query(RotterdamPopulationQuery, (error, results) => {
+connection.query(rotterdamPopulationQuery, (error, results) => {
   if (error) {
     throw error;
   }
