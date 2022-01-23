@@ -13,10 +13,10 @@ from authors;
 `;
 
 const authorsNameAndPaperTitleQuery = `
-SELECT author_name, paper_title
+SELECT authors.author_name,university,date_of_birth,gender,mentor,research_papers.paper_title,conference,publish_date
 FROM authors
-LEFT JOIN research_papers ON authors.author_no= research_papers.author_no
-order by author_name ASC
+LEFT JOIN author_research ON authors.author_no= author_research.author_no
+LEFT JOIN research_papers ON research_papers.paper_id=author_research.paper_id
 `;
 
 //Connect to the Database server

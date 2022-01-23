@@ -7,8 +7,7 @@ let connection = mysql.createConnection({
   database: 'thesis',
 });
 
-const createTableQuery =
-  'CREATE TABLE authors(author_no int PRIMARY KEY, author_name VARCHAR(50),university VARCHAR(50), date_of_birth DATE);';
+const createTableQuery = `CREATE TABLE authors(author_no int PRIMARY KEY, author_name VARCHAR(50), university VARCHAR(50), date_of_birth DATE, gender enum('m','f'));`;
 const addColumnQuery = 'ALTER TABLE authors ADD COLUMN mentor INT;';
 const addForeignKeyQuery =
   ' ALTER TABLE authors ADD CONSTRAINT fk_mentor FOREIGN KEY(mentor) REFERENCES authors(author_no);';
