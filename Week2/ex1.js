@@ -1,5 +1,7 @@
 import mysql from 'mysql';
+import util from 'util';
 
+// Connection configurations to database
 let connection = mysql.createConnection({
   host: 'localhost',
   user: 'hyfuser',
@@ -7,47 +9,50 @@ let connection = mysql.createConnection({
   database: 'thesis',
 });
 
-const createTableQuery = `CREATE TABLE authors(author_no int PRIMARY KEY, author_name VARCHAR(50), university VARCHAR(50), date_of_birth DATE, gender enum('m','f'));`;
-const addColumnQuery = 'ALTER TABLE authors ADD COLUMN mentor INT;';
-const addForeignKeyQuery =
-  ' ALTER TABLE authors ADD CONSTRAINT fk_mentor FOREIGN KEY(mentor) REFERENCES authors(author_no);';
-//Connect to the Database server
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Server connected!');
-});
+//Promise method to make sql query to the database
+const execQuery = util.promisify(connection.query.bind(connection));
 
-function createTableFunc() {
-  connection.query(createTableQuery, (error, results) => {
-    if (error) {
-      throw error;
-    }
-    console.log('Table created');
+//Async function to seed data from the database
+async function seedDatabase() {
+  // Object of sql queries
+  const queries = {
+    createTableQuery: `
+    CREATE TABLE authors
+    (author_no int PRIMARY KEY, author_name VARCHAR(50), university VARCHAR(50),
+    date_of_birth DATE, gender enum('m','f'));
+    `,
+    addColumnQuery: `
+    ALTER TABLE authors ADD COLUMN mentor INT;
+    `,
+    addForeignKeyQuery: `
+    ALTER TABLE authors ADD CONSTRAINT
+    fk_mentor FOREIGN KEY(mentor) 
+    REFERENCES authors(author_no);
+    `,
+  };
+
+  // Connect to database server
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log('Server connected!');
+  });
+
+  try {
+    await execQuery(queries.createTableQuery);
+    await execQuery(queries.addColumnQuery);
+    await execQuery(queries.addForeignKeyQuery);
+  } catch (error) {
+    console.error(error);
+    //End the connection to the database
+    connection.end(() => {
+      console.log('Server disconnected!');
+    });
+  }
+
+  //End the connection to the database
+  connection.end(() => {
+    console.log('Server disconnected!');
   });
 }
 
-function addColumnFunc() {
-  connection.query(addColumnQuery, (error, results) => {
-    if (error) {
-      throw error;
-    }
-    console.log('Column added');
-  });
-}
-
-function addForeignKeyFunc() {
-  connection.query(addForeignKeyQuery, (error, results) => {
-    if (error) {
-      throw error;
-    }
-    console.log('Foreign key added');
-  });
-}
-
-createTableFunc();
-addColumnFunc();
-addForeignKeyFunc();
-
-connection.end(() => {
-  console.log('Server disconnected!');
-});
+seedDatabase();
