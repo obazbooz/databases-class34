@@ -21,10 +21,10 @@ async function seedDatabase() {
   const queries = {
     createResearchPapersTableQuery: `
     CREATE TABLE research_papers
-    (paper_id int PRIMARY KEY, paper_title VARCHAR(50),conference VARCHAR(50), publish_date DATE, h_index smallint);
+    (paper_id INT PRIMARY KEY, paper_title VARCHAR(500),conference VARCHAR(400), publish_date DATE, h_index smallint);
     `,
     createAuthorsResearchTableQuery: `
-    CREATE TABLE author_research(author_no int , paper_id int);
+    CREATE TABLE author_research(author_no INT , paper_id INT);
     `,
     alterAuthorsResearchTableAuthorFkQuery: `
     ALTER TABLE author_research ADD 
@@ -69,10 +69,6 @@ async function seedDatabase() {
     });
   } catch (error) {
     console.error(error);
-    //End the connection to the database
-    connection.end(() => {
-      console.log('Server disconnected!');
-    });
   }
 
   //End the connection to the database

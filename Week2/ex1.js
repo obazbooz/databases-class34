@@ -18,8 +18,8 @@ async function seedDatabase() {
   const queries = {
     createTableQuery: `
     CREATE TABLE authors
-    (author_no int PRIMARY KEY, author_name VARCHAR(50), university VARCHAR(50),
-    date_of_birth DATE, gender enum('m','f'));
+    (author_no INT PRIMARY KEY, author_name VARCHAR(300), university VARCHAR(300),
+    date_of_birth DATE, gender ENUM('m','f'));
     `,
     addColumnQuery: `
     ALTER TABLE authors ADD COLUMN mentor INT;
@@ -43,10 +43,6 @@ async function seedDatabase() {
     await execQuery(queries.addForeignKeyQuery);
   } catch (error) {
     console.error(error);
-    //End the connection to the database
-    connection.end(() => {
-      console.log('Server disconnected!');
-    });
   }
 
   //End the connection to the database

@@ -18,7 +18,7 @@ const queries = {
   GROUP BY research_papers.paper_title
   `,
   numOfResearchesPublishedByFemaleQuery: `
-  SELECT COUNT(research_papers.paper_id) AS number_of_published_researches_by_females 
+  SELECT Count(distinct(research_papers.paper_title)) AS number_of_published_researches_by_females 
   FROM authors
   LEFT JOIN author_research ON authors.author_no= author_research.author_no
   LEFT JOIN research_papers ON research_papers.paper_id=author_research.paper_id

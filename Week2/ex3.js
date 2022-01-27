@@ -11,8 +11,8 @@ let connection = mysql.createConnection({
 // Object of sql queries
 const queries = {
   authorsNameAndMentorQuery: `
-  select author_name , mentor
-  from authors;
+  SELECT author_name , mentor
+  FROM authors;
   `,
   authorsNameAndPaperTitleQuery: `
   SELECT authors.author_name,university,date_of_birth,gender,mentor,research_papers.paper_title,conference,publish_date
