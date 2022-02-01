@@ -1,7 +1,6 @@
 import mysql from 'mysql';
 import util from 'util';
 import { accountValues } from './tables-values.js';
-// import { accountChangesValues } from './tables-values.js';
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -22,11 +21,6 @@ async function seedDatabase() {
     accountValues.forEach(async (value) => {
       await execQuery(insertAccountValues, value);
     });
-
-    // const insertAccountChangesValues = `INSERT INTO account_changes SET ?;`;
-    // accountChangesValues.forEach(async (value) => {
-    //   await execQuery(insertAccountChangesValues, value);
-    // });
 
     await execQuery('COMMIT');
   } catch (error) {

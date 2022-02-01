@@ -1,4 +1,4 @@
-# 1FN rules:
+# 1FN rules
 
 1- All data must be atomic (every column should only contain a single value)
 2- Repeating columns are not allowed
@@ -26,4 +26,5 @@
 
 ## Q3 - Name all the tables and columns that would make a 3NF compliant solution.?
 
--
+-we have the following attributes (dinner_date - venue_description - food_code - food_description)
+which depend on non primary key attributes (dinner_id - venue_code)

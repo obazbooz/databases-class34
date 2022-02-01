@@ -1,0 +1,19 @@
+# Steps to migrate to Atlas MongoDB account
+
+1- Create an account on Atles mongodb
+2- Install the mongodb shell
+3- Also I install the mongodb compass as a GUI to interact with mongodb server
+4- From mongodb I choose create database
+5- Create collections (city - country - countrylanguage)
+6- From the mysql server I export three json files for all tables in the world database 
+(Note: firstly 
+   I created the csv files from mysql shell using the following commands:
+     |select * into outfile 'city.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' from city;
+      select * into outfile 'country.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' from country;
+      select * into outfile 'countrylanguage.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' from countrylanguage;)
+   But I noticed that the results in the csv files have some issues in the values places so for that
+   I used the first method by exporting json files from mysql server.)   
+
+7- After that I imported the json files of (city - country - countrylanguage) into my mongodb server
+    using mongodb compass
+
