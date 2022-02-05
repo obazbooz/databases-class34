@@ -18,14 +18,15 @@ async function seedDatabase() {
 
     const createAccountTAble = `
     CREATE TABLE account
-    (account_number INT PRIMARY KEY, balance FLOAT);`;
+    (account_number INT PRIMARY KEY, balance INTEGER);`;
     await execQuery(createAccountTAble);
 
     const createAccountChangesTable = `
     CREATE TABLE account_changes
-    (change_number INT PRIMARY KEY, account_number INT, amount FLOAT,
+    (change_number INT, account_number INT, amount INTEGER,
     changed_date DATETIME, remark VARCHAR(500),
-    FOREIGN KEY (account_number) REFERENCES account(account_number)
+    CONSTRAINT PK_account_changes PRIMARY KEY (change_number, account_number),
+    CONSTRAINT FK_account_number FOREIGN KEY (account_number) REFERENCES account(account_number)
     );`;
     await execQuery(createAccountChangesTable);
 

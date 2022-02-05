@@ -10,21 +10,20 @@
 - The following columns violate the 1FN:
 
   - member_id : violate the rules (3)
-  - member_address : violate the rules (1,4)
   - venue_description : violate the rules (1)
   - food_code : violate the rules (1,4)
   - food_description : violate the rules (1)
 
 ## Q2 - What entities do you recognize that could be extracted?
 
-- I can extract to three tables as following:
+- I can extract to four tables as following:
   1-member table
   2-dinner table
   3-food table
-  4- I need also two tables to break the many to many relationship between
-  (member & dinner) and (dinner & food)
+  4-venue table
+  5-order table
 
 ## Q3 - Name all the tables and columns that would make a 3NF compliant solution.?
 
--we have the following attributes (dinner_date - venue_description - food_code - food_description)
-which depend on non primary key attributes (dinner_id - venue_code)
+- dinner many-to-one venue
+- member dinner food
